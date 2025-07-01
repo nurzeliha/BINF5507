@@ -5,7 +5,7 @@ from sklearn.datasets import make_moons, make_blobs, make_circles
 from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
 from sklearn.metrics import silhouette_score
 
-# Helper function for plotting
+#function for plotting
 def plot_clusters(X, labels_list, titles, centers_list=None, figsize=(18, 5)):
     n = len(labels_list)
     fig, axes = plt.subplots(1, n, figsize=figsize)
@@ -24,7 +24,7 @@ def plot_clusters(X, labels_list, titles, centers_list=None, figsize=(18, 5)):
     plt.tight_layout()
     plt.show()
 
-# Dataset 1: make_moons (non-spherical, good for DBSCAN)
+# Dataset 1: make_moons
 X1, y1 = make_moons(n_samples=300, noise=0.05, random_state=42)
 
 # k-Means
@@ -52,7 +52,7 @@ plot_clusters(
     centers_list=[centers_kmeans1, None, None],
 )
 
-# Dataset 2: make_blobs with varying densities
+# Dataset 2: make_blobs
 X2, y2 = make_blobs(
     n_samples=300,
     centers=3,
@@ -86,7 +86,7 @@ plot_clusters(
 )
 
 
-# Dataset 3: make_circles (non-linearly separable, good for DBSCAN)
+# Dataset 3: make_circles
 X3, y3 = make_circles(n_samples=300, factor=0.5, noise=0.05, random_state=42)
 
 # k-Means
@@ -98,7 +98,7 @@ centers_kmeans3 = kmeans3.cluster_centers_
 agg3 = AgglomerativeClustering(n_clusters=2)
 labels_agg3 = agg3.fit_predict(X3)
 
-# DBSCAN (tuned for circles)
+# DBSCAN
 dbscan3 = DBSCAN(eps=0.2, min_samples=5)
 labels_dbscan3 = dbscan3.fit_predict(X3)
 
